@@ -6,9 +6,11 @@ type props = {
 export default function PhotoCard({imgSrc, caption}: props) {
 	return (
 		<>
-			<figure>
-				<img src={imgSrc} alt={caption} className="card-img" />
-				<figcaption className={"img-caption"}>{caption}</figcaption>
+			<figure className="section-image">
+				<img src={imgSrc}
+				     alt={caption}
+				     className="card-img"/>
+				<figcaption className="img-caption">{caption}</figcaption>
 			</figure>
 		</>
 	)
