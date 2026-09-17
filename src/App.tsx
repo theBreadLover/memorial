@@ -1,5 +1,6 @@
 import Home from "./pages/Home.tsx";
 import Messages from "./pages/Messages.tsx";
+import Gallery from "./pages/Gallery.tsx";
 
 export default function App () {
   return (
@@ -10,6 +11,8 @@ export default function App () {
     >
       <Home />
       <Messages />
+
+      <Gallery />
 
       <footer
         className="text-center text-gray-600 mt-10"

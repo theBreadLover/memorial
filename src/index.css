@@ -14,10 +14,7 @@
         @apply mx-1 text-[#1b1b1b] rounded-lg  bg-background-color/10 text-center;
     }
     .section-container {
-        @apply max-w-2xl w-full bg-white border border-black rounded-xl p-6 mb-8 shadow-sm;
-    }
-    .section-image {
-        @apply mx-2 mt-1 pl-1 w-33 h-33 text-sm text-black/30 float-right ;
+        @apply max-w-3xl w-full bg-white border border-black rounded-xl p-6 mb-8 shadow-sm;
     }
     .section-title {
         @apply text-xl font-semibold border-b border-red-700 pb-2 mb-4
