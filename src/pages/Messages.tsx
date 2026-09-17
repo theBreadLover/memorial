@@ -15,13 +15,13 @@ export default function Messages() {
 			<MessageSection
 				author={"John Doe"}
 				relation={"Friend"}
-				text={"You will always be in our hearts. Thank you for the love and\nguidance you gave us."}
+				text={"You will always be in our hearts. Thank you for the love and guidance you gave us."}
 			/>
 
 			<MessageSection
 				author={"Michael Smith"}
 				relation={"Family"}
-				text={"You will always be in our hearts. Thank you for the love and\n guidance you gave us."}
+				text={"You will always be in our hearts. Thank you for the love and guidance you gave us."}
 			/>
 		</section>
 	)
