@@ -1,40 +1,23 @@
-import Separator from "./components/Separator.tsx";
-import images from "./utils/images.ts";
-import Section from "./components/Section.tsx";
+import Home from "./pages/Home.tsx";
+import Messages from "./pages/Messages.tsx";
 
 export default function App () {
   return (
-    <>
-      {/*<Header />*/}
-      <main className="main">
-        <article className="bg-transparent m-1 p-2">
-          <section className="article-section flex flex-col flex-wrap text-center items-center">
-            <h1 className="banner-title text-center text-2xl">In Memory Of</h1>
-            <img className="banner-image" alt="and" src={images[1].src} />
-            <p className="banner-text">
-              Edwin Hernandez
-              <br/>
-              Who left this world on 10/17/2025.
-            </p>
-          </section>
-          <Separator />
+    <main
+      className="min-h-screen bg-white text-black flex flex-col items-center px-4 py-10"
+      role="main"
+      aria-labelledby="memorial-title"
+    >
+      <Home />
+      <Messages />
 
-          <Section
-            title={"Introduction"}
-            image={images[3]}
-            text={
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eaque illo iure nulla numquam officia quia recusandae repudiandaesimilique voluptatibus!\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, rerum."}
-          />
-          <Separator />
-
-          <Section
-            title={"What He liked"}
-            image={images[2]}
-            text={"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor maxime pariatur temporibus?\n Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi consequuntur maxime nobis, officia quam quidem voluptatem!"}
-          />
-        </article>
-
-      </main>
-    </>
+      <footer
+        className="text-center text-gray-600 mt-10"
+        role="contentinfo"
+        aria-label="Footer note"
+      >
+        <p>Forever in our hearts.</p>
+      </footer>
+    </main>
   )
 }
