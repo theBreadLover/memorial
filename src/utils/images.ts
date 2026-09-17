@@ -1,43 +1,41 @@
-const path: string = 'memorial/images';
-
 const images = [
 	{
-		src: path + "//image1.jpg",
+		src: "images/image1.jpg",
 		quote: "test text for image 1.",
 		id: "image_1"
 	},
 	{
-		src: path + "//image2.jpg",
+		src: "images/image2.jpg",
 		quote: "test text for image 2.",
 		id: "image_2"
 	},
 	{
-		src: path + "//image3.jpg",
+		src: "images/image3.jpg",
 		quote: "test text for image 3.",
 		id: "image_3"
 	},
 	{
-		src: path + "//image4.jpg",
+		src: "images/image4.jpg",
 		quote: "test text for image 4.",
 		id: "image_4"
 	},
 	{
-		src: path + "//image5.jpg",
+		src: "images/image5.jpg",
 		quote: "test text for image 5",
 		id: "image_5"
 	},
 	{
-		src: path + "//image6.jpg",
+		src: "images/image6.jpg",
 		quote: "test text for image 6",
 		id: "image_6"
 	},
 	{
-		src: path + "//image7.jpg",
+		src: "images/image7.jpg",
 		quote: "test text for image 7",
 		id: "image_7"
 	},
 	{
-		src: path + "//image8.jpg",
+		src: "images/image8.jpg",
 		quote: "test text for image 8",
 		id: "image_8"
 	},

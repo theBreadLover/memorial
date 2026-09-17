@@ -1,6 +1,5 @@
 import images from "../utils/images.ts";
 import Section from "../components/Section.tsx";
-// import images from "../utils/images.ts";
 
 export default function Home () {
 	return (
@@ -11,7 +10,7 @@ export default function Home () {
 				</h1>
 				<figure className="mt-8 flex flex-col items-center">
 					<img
-						src={images[1].src}
+						src={images[0].src}
 						alt="Portrait of Edwin Hernandez"
 						className="w-48 h-48 rounded-full object-cover border-3 border-black shadow-xl"
 					/>
