@@ -10,7 +10,7 @@ export default function Home () {
 				</h1>
 				<figure className="mt-8 flex flex-col items-center">
 					<img
-						src={images[0].src}
+						src={images[1].src}
 						alt="Portrait of Edwin Hernandez"
 						className="w-48 h-48 rounded-full object-cover border-3 border-black shadow-xl"
 					/>
@@ -35,7 +35,7 @@ export default function Home () {
 			{/* Interaction Section */}
 			<Section
 				title={"Interactions"}
-				text={"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, laborum!"}
+				text={"Edwin was a easy-going guy that always managed to get along with everybody that He approached"}
 			/>
 
 			{/* Memories Section */}

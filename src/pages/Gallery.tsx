@@ -14,8 +14,8 @@ export default function Gallery() {
 				Gallery
 			</h2>
 			<ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-				{images.map((image, index: number) => (
-					<li key={index}>
+				{images.map((image) => (
+					<li key={image.id}>
 						<PhotoCard
 							imgSrc={image.src}
 							caption={image.quote}
