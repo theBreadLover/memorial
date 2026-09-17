@@ -29,8 +29,8 @@ export default function Home () {
 			{/* Introduction Section */}
 			<Section
 				title="Introduction"
-				text="They touched many lives with their kindness, strength, and warmth.
-					Their story lives on in the hearts of those who knew them."
+				text="He touched many lives with his kindness, strength, and warmth.
+					His story lives on in the hearts of those who knew him."
 			/>
 
 			{/* Interaction Section */}
