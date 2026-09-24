@@ -1,25 +1,25 @@
 type properties = {
 	author: string,
 	relation: string,
-	text: string,
+	message: string,
 }
 
-export default function MessageSection({author, relation, text}: properties) {
+export default function MessageSection({author, relation, message}: properties) {
 
-	let paragraphs: string[] = text.trim().split('\n');
+	let paragraphs: string[] = message.trim().split('\n');
 
 	return (
 		<article
-			className="border-l-4 border-red-700 pl-4 mb-4"
+			className="tribute-message"
 			aria-label={`Message from ${relation}`}
 		>
-			<h3 className="font-semibold text-lg">{author}</h3>
+			<h3 className="font-semibold text-lg text-slate-800">{author}</h3>
+			<p className="eyebrow-label">{relation}</p>
 			{paragraphs.map((paragraph: string, index: number) => (
-					<p key={index} className="text-gray-700">
+					<p key={index} className="text-slate-600">
 						{paragraph.trim()}
 					</p>
-				))}
-		{/**/}
+			))}
 		</article>
 	)
 }
