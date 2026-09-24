@@ -11,19 +11,19 @@
 
 @layer components {
     .nav-link {
-        @apply mx-1 text-[#1b1b1b] rounded-lg  bg-background-color/10 text-center;
-    }
-    .section-container {
-        @apply max-w-3xl w-full bg-white border border-black rounded-xl p-6 mb-8 shadow-sm;
-    }
-    .section-title {
-        @apply text-xl font-semibold border-b border-accent-color pb-2 mb-4 text-slate-800;
+        @apply mx-1 text-[#1b1b1b] rounded-lg bg-background-color/10 text-center;
     }
 
-    /*Reused accross Messages, MessageForm, Admin, Gallery, Home */
+    .section-container {
+        @apply max-w-3xl w-full mx-auto bg-white/70 backdrop-blur-2xl border border-accent-color/20 rounded-xl p-5 sm:p-6 mb-6 sm:mb-8 shadow-sm;
+    }
+
+    .section-title {
+        @apply text-xl font-semibold border-b border-accent-color pb-2 mb-4 text-title-color;
+    }
 
     .card-surface {
-        @apply bg-white/70 backdrop-blur border border-sky-100 shadow-sm rounded-2xl p-6;
+        @apply bg-white/70 backdrop-blur border border-sky-100 shadow-sm rounded-2xl p-5 sm:p-6;
     }
 
     .eyebrow-label {
@@ -31,33 +31,69 @@
     }
 
     .tribute-message {
-        @apply border-l-4 border-accent-color bg-white/70 backdrop-blur rounded-r-xl px-4 py-3 mb-4 shadow-sm;
+        @apply border-l-4 border-accent-color bg-white/70 backdrop-blur rounded-r-xl pl-4 pr-4 py-3 mb-4 shadow-md;
     }
 
     .form-field-input {
-        @apply w-full rounded-lg border border-sky-200 px-3 py-2 outline-none focus:ring-2 focus:ring-accent-color/40;
+        @apply w-full rounded-lg border border-sky-200 px-3 py-2.5 outline-none focus:ring-2 focus:ring-accent-color/40 resize-none;
     }
 
     .btn-primary {
-        @apply rounded-full bg-gradient-to-r from-secondary-color to-accent-color text-white px-6 py-2 font-medium shadow hover:opacity-90 transition;
+        @apply rounded-full bg-linear-to-r from-secondary-color to-accent-color text-white px-6 py-2.5 font-medium shadow hover:opacity-90 transition;
     }
 
     .btn-secondary {
-        @apply rounded-full bg-slate-200 text-slate-700 px-4 py-1.5 text-sm font-medium hover:bg-slate-300 transition;
+        @apply rounded-full bg-slate-200 text-slate-700 px-4 py-2 text-sm font-medium hover:bg-slate-300 transition;
     }
 
     .gallery-figure {
-        @apply rounded-xl overflow-hidden bg-gradient-to-b from-sky-50 to-emerald-50 shadow-sm;
+        @apply rounded-xl overflow-hidden bg-linear-to-br from-sky-50 to-emerald-50 shadow-sm;
     }
 
-    .portrait-frame {
-        @apply rounded-full object-cover border-4 border-white shadow-xl ring-4 ring-sky-200;
+    /* Hero frame, ported from the Nature & Sky mockup */
+
+    .memorial-frame {
+        @apply relative overflow-hidden rounded-2xl text-center mb-6 sm:mb-8;
+        background: linear-gradient(180deg, #eaf6f8 0%, #eef7f0 55%, #ffffff 100%);
+        padding: 40px 20px 32px;
+    }
+
+    .frame-mountains {
+        @apply absolute inset-x-0 top-0 pointer-events-none;
+        height: 150px;
+        background:
+                linear-gradient(120deg, transparent 48%, rgba(90,140,150,0.16) 48.5%, transparent 51%),
+                linear-gradient(60deg, transparent 60%, rgba(120,170,140,0.18) 60.5%, transparent 64%),
+                linear-gradient(150deg, transparent 30%, rgba(90,140,150,0.10) 30.5%, transparent 34%);
+    }
+
+    .portrait-ring {
+        @apply relative mx-auto rounded-full p-1 shadow-lg;
+        width: 112px;
+        height: 112px;
+        background: linear-gradient(155deg, #bfe3e9, #7fb8c4 45%, #6fae8e);
+    }
+    @media (min-width: 640px) {
+        .memorial-frame {
+            padding: 64px 40px 48px;
+        }
+
+        .frame-mountains {
+            height: 200px;
+        }
+
+        .portrait-ring {
+            width: 144px;
+            height: 144px;
+        }
     }
 }
 
-@theme   {
+@theme {
     --color-line-color: #0000001A;
-    --color-background-color: #F1F8F6;
-    --color-accent-color: #059669;
-    --color-secondary-color: #0EA5E9;
+    --color-background-color: #F9FAFB;
+    --color-accent-color: #3f7a6e;
+    --color-secondary-color: #6fae8e;
+    --color-title-color: #204a42;
+    --color-muted-color: #4d7d72;
 }

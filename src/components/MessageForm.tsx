@@ -7,7 +7,7 @@ export default function MessageForm() {
 	const [text, setText] = useState("");
 	const [submitted, setSubmitted] = useState(false);
 
-	function handleSubmit(e: React.FormEvent) {
+	function handleSubmit(e: React.SubmitEvent) {
 		e.preventDefault();
 		if (!author.trim() || !relation.trim() || !text.trim()) return;
 		submitMessage(author, relation, text);
@@ -62,7 +62,7 @@ export default function MessageForm() {
 					value={text}
 					onChange={(e) => setText(e.target.value)}
 					required
-					rows={4}
+					rows={7}
 					className="form-field-input"
 				/>
 			</div>

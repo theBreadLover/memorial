@@ -26,14 +26,17 @@ export default function App () {
   return (
     <BrowserRouter>
       <main
-        className="min-h-screen bg-background-color text-black flex flex-col items-center px-4 py-10"
+        className="min-h-screen bg-background-color text-black flex flex-col items-center px-1"
         role="main"
         aria-labelledby="memorial-title"
         >
-        <Routes>
-          <Route path="/" element={<MainSite />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
+        <div className="memorial-frame">
+          <div className="frame-mountains" />
+          <Routes>
+            <Route path="/" element={<MainSite />} />
+            <Route path="/admin" element={<Admin />} />
+          </Routes>
+        </div>
       </main>
     </BrowserRouter>
   )

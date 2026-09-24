@@ -23,7 +23,7 @@ export default function Admin() {
 
 	if (!unlocked) {
 		return (
-			<section className="w-full max-w-sm mx-auto py-24 px-4 text-center">
+			<section className="w-full max-w-sm mx-auto py-14 sm:py-24 px-4 text-center">
 				<h1 className="text-2xl font-semibold text-slate-800 mb-4">Admin sign-in</h1>
 				<input
 					type="password"
@@ -43,7 +43,7 @@ export default function Admin() {
 	}
 
 	return (
-		<section className="w-full max-w-2xl mx-auto py-16 px-4">
+		<section className="w-full max-w-2xl mx-auto py-10 sm:py-16 px-4">
 			<h1 className="text-2xl font-semibold text-slate-800 mb-6">
 				Pending messages ({pending.length})
 			</h1>
@@ -56,7 +56,7 @@ export default function Admin() {
 				{pending.map((m) => (
 					<div
 						key={m.id}
-						className="card-surface p-5"
+						className="card-surface"
 					>
 						<p className="eyebrow-label">{m.relation}</p>
 						<p className="text-slate-700">&ldquo;{m.text}&rdquo;</p>
