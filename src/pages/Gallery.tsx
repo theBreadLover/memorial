@@ -9,7 +9,7 @@ export default function Gallery() {
 		>
 			<h2
 				id="gallery-title"
-				className="text-2xl font-semibold border-b  border-red-700 pb-2 mb-4"
+				className="section-title"
 			>
 				Gallery
 			</h2>

@@ -5,7 +5,7 @@
         @apply m-0 p-0 outline-none text-lg;
     }
     img {
-        @apply w-34 h-35 rounded-lg
+        @apply w-34 h-35 rounded-lg;
     }
 }
 
@@ -17,12 +17,47 @@
         @apply max-w-3xl w-full bg-white border border-black rounded-xl p-6 mb-8 shadow-sm;
     }
     .section-title {
-        @apply text-xl font-semibold border-b border-red-700 pb-2 mb-4
+        @apply text-xl font-semibold border-b border-accent-color pb-2 mb-4 text-slate-800;
+    }
+
+    /*Reused accross Messages, MessageForm, Admin, Gallery, Home */
+
+    .card-surface {
+        @apply bg-white/70 backdrop-blur border border-sky-100 shadow-sm rounded-2xl p-6;
+    }
+
+    .eyebrow-label {
+        @apply text-xs uppercase tracking-wide text-accent-color mb-1;
+    }
+
+    .tribute-message {
+        @apply border-l-4 border-accent-color bg-white/70 backdrop-blur rounded-r-xl px-4 py-3 mb-4 shadow-sm;
+    }
+
+    .form-field-input {
+        @apply w-full rounded-lg border border-sky-200 px-3 py-2 outline-none focus:ring-2 focus:ring-accent-color/40;
+    }
+
+    .btn-primary {
+        @apply rounded-full bg-gradient-to-r from-secondary-color to-accent-color text-white px-6 py-2 font-medium shadow hover:opacity-90 transition;
+    }
+
+    .btn-secondary {
+        @apply rounded-full bg-slate-200 text-slate-700 px-4 py-1.5 text-sm font-medium hover:bg-slate-300 transition;
+    }
+
+    .gallery-figure {
+        @apply rounded-xl overflow-hidden bg-gradient-to-b from-sky-50 to-emerald-50 shadow-sm;
+    }
+
+    .portrait-frame {
+        @apply rounded-full object-cover border-4 border-white shadow-xl ring-4 ring-sky-200;
     }
 }
 
 @theme   {
     --color-line-color: #0000001A;
-    --color-background-color: #F9FAFB;
-    --color-accent-color: red;
+    --color-background-color: #F1F8F6;
+    --color-accent-color: #059669;
+    --color-secondary-color: #0EA5E9;
 }
