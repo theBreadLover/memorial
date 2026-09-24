@@ -26,7 +26,7 @@ export default function App () {
   return (
     <BrowserRouter>
       <main
-        className="min-h-screen bg-background-color text-black flex flex-col items-center px-1"
+        className="app-container"
         role="main"
         aria-labelledby="memorial-title"
         >

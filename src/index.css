@@ -89,6 +89,13 @@
     }
 }
 
+@layer utilities {
+    .app-container {
+        @apply min-h-screen text-black flex flex-col items-center px-1;
+        background: linear-gradient(180deg, #eaf6f8 0%, #eef7f0 55%, #ffffff 100%);
+    }
+}
+
 @theme {
     --color-line-color: #0000001A;
     --color-background-color: #F9FAFB;
