@@ -15,7 +15,7 @@
     }
 
     .section-container {
-        @apply max-w-3xl w-full mx-auto bg-white/70 backdrop-blur-2xl border border-accent-color/20 rounded-xl p-5 sm:p-6 mb-6 sm:mb-8 shadow-sm;
+        @apply max-w-3xl w-full mx-auto bg-white/60 backdrop-blur-2xl rounded-xl p-5 sm:p-6 mb-6 sm:mb-8 shadow-md;
     }
 
     .section-title {
