@@ -24,3 +24,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Supabase
+/supabase/branches
+/supabase/.temp
+/supabase/config.toml
+/supabase/functions
+/functions/submit-message/deno.json
+/supabase/functions/submit-message/index.ts
+/functions/submit-message/.npmrc
+
+
+# dotenvx
+.env.keys
+.env.local
+.env.*.local

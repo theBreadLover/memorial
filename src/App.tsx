@@ -2,7 +2,7 @@ import Home from "./pages/Home.tsx";
 import Messages from "./pages/Messages.tsx";
 import Gallery from "./pages/Gallery.tsx";
 import Admin from "./pages/Admin.tsx";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 
 function MainSite() {
   return (
@@ -24,7 +24,7 @@ function MainSite() {
 
 export default function App () {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <main
         className="app-container"
         role="main"
@@ -38,6 +38,6 @@ export default function App () {
           </Routes>
         </div>
       </main>
-    </BrowserRouter>
+    </HashRouter>
   )
 }

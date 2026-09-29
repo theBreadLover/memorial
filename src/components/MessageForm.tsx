@@ -6,15 +6,26 @@ export default function MessageForm() {
 	const [relation, setRelation] = useState("");
 	const [text, setText] = useState("");
 	const [submitted, setSubmitted] = useState(false);
+	const [submitting, setSubmitting] = useState(false);
+	const [error, setError] = useState<string | null>(null);
 
-	function handleSubmit(e: React.SubmitEvent) {
+	async function handleSubmit(e: React.FormEvent) {
 		e.preventDefault();
 		if (!author.trim() || !relation.trim() || !text.trim()) return;
-		submitMessage(author, relation, text);
-		setAuthor("");
-		setRelation("");
-		setText("");
-		setSubmitted(true);
+
+		setSubmitting(true);
+		setError(null);
+		try {
+			await submitMessage(author, relation, text);
+			setAuthor("");
+			setRelation("");
+			setText("");
+			setSubmitted(true);
+		} catch {
+			setError("Sorry, that message couldn't be sent. Please try again.");
+		} finally {
+			setSubmitting(false);
+		}
 	}
 
 	if (submitted) {
@@ -32,10 +43,7 @@ export default function MessageForm() {
 	}
 
 	return (
-		<form
-			onSubmit={handleSubmit}
-			className="card-surface space-y-4"
-		>
+		<form onSubmit={handleSubmit} className="card-surface space-y-4">
 			<h3 className="text-lg font-semibold text-slate-800">Share a memory</h3>
 			<div>
 				<label className="block text-sm text-slate-600 mb-1">Your name</label>
@@ -66,14 +74,10 @@ export default function MessageForm() {
 					className="form-field-input"
 				/>
 			</div>
-			<p className="text-xs text-slate-500">
-				Messages are reviewed before they appear publicly.
-			</p>
-			<button
-				type="submit"
-				className="btn-primary"
-			>
-				Send
+			{error && <p className="text-sm text-red-600">{error}</p>}
+			<p className="text-xs text-slate-500">Messages are reviewed before they appear publicly.</p>
+			<button type="submit" disabled={submitting} className="btn-primary disabled:opacity-60">
+				{submitting ? "Sending…" : "Send"}
 			</button>
 		</form>
 	);

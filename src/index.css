@@ -39,11 +39,11 @@
     }
 
     .btn-primary {
-        @apply rounded-full bg-linear-to-r from-secondary-color to-accent-color text-white px-6 py-2.5 font-medium shadow hover:opacity-90 transition;
+        @apply rounded-full ml-auto bg-linear-to-r from-secondary-color to-accent-color text-white px-6 py-2.5 font-medium shadow hover:opacity-90 transition;
     }
 
     .btn-secondary {
-        @apply rounded-full bg-slate-200 text-slate-700 px-4 py-2 text-sm font-medium hover:bg-slate-300 transition;
+        @apply rounded-full mr-auto bg-slate-200 text-slate-700 px-4 py-2 text-sm font-medium hover:bg-slate-300 transition;
     }
 
     .gallery-figure {

@@ -1,89 +1,73 @@
+import { supabase } from "./supabaseClient.ts";
+
 export type TributeMessage = {
 	id: string;
 	author: string;
 	relation: string;
-	text: string;
+	message: string;
 	createdAt: string;
 	status: "pending" | "approved" | "rejected";
 }
 
-const STORAGE_KEY = "memorial_messages";
-
-function readAllMessages(): TributeMessage[] {
-	try {
-		const raw= localStorage.getItem(STORAGE_KEY);
-		return raw ? (JSON.parse(raw) as TributeMessage[]) : seedSampleData();
+function mapRow(row: any): TributeMessage {
+	return {
+		id: row.id,
+		author: row.author,
+		relation: row.relation,
+		message: row.message,
+		createdAt: row.created_at,
+		status: row.status,
 	}
-	catch {
-		return [];
-	}
 }
 
-function writeAllMessages(messages: TributeMessage[]): void {
-	localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+export async function getApprovedMessages(): Promise<TributeMessage[]> {
+	const { data, error } = await supabase
+		.from("messages")
+		.select("*")
+		.eq("status", "approved")
+		.order("created_at", {ascending: false});
+
+	if (error) throw error;
+
+	return (data ?? []).map(mapRow);
 }
 
-function seedSampleData(): TributeMessage[] {
-	const sample: TributeMessage[] = [
-		{
-			id: crypto.randomUUID(),
-			author: "John Doe",
-			relation: "Friend",
-			text: "You will always be in our hearts. Thank you for the love and guidance you gave us.",
-			createdAt: new Date().toISOString(),
-			status: "approved",
-		},
-		{
-			id: crypto.randomUUID(),
-			author: "Michael Smith",
-			relation: "Family",
-			text: "You will always be in our hearts. Thank you for the love and guidance you gave us.",
-			createdAt: new Date().toISOString(),
-			status: "approved",
-		},
-	];
-	writeAllMessages(sample);
-	return sample;
+export async function getPendingMessages(): Promise<TributeMessage[]> {
+	const { data, error } = await supabase
+		.from("messages")
+		.select("*")
+		.eq("status", "pending")
+		.order("created_at", {ascending: false});
+
+	if (error) throw error;
+
+	return (data ?? []).map(mapRow);
 }
 
-export function getAprovedMessages(): TributeMessage[] {
-	return readAllMessages()
-		.filter(message => message.status === "approved")
-		.sort((a, b) => (a.createdAt <b.createdAt ? 1 : -1));
+export async function submitMessage(author: string, relation: string, text: string): Promise<void> {
+	const { error } = await supabase
+		.functions
+		.invoke("submit-message", {
+			body: { author, relation, text },
+		});
+
+	if (error) throw error;
 }
 
-export function getPendingMessages(): TributeMessage[] {
-	return readAllMessages()
-		.filter(message => message.status === "pending")
-		.sort((a, b) => (a.createdAt <b.createdAt ? 1 : -1));
+export async function approveMessage(id: string): Promise<void> {
+	const { error } = await supabase
+		.from("messages")
+		.update({status: "approved"})
+		.eq("id", id);
+
+	if (error) throw error;
 }
 
-export function submitMessage(author: string, relation: string, text: string): void {
+export async function rejectMessage(id: string): Promise<void> {
+	const { error } = await supabase
+		.from("messages")
+		.update({status: "rejected"})
+		.eq("id", id);
 
-	const messages: TributeMessage[] = readAllMessages();
-
-	messages.push({
-		id: crypto.randomUUID(),
-		author: author.trim(),
-		relation: relation.trim(),
-		text: text.trim(),
-		createdAt: new Date().toISOString(),
-		status: "pending"
-	});
-
-	writeAllMessages(messages);
-}
-
-export function  approveMessage(id: string): void {
-	const messages: TributeMessage[] = readAllMessages()
-		.map((message) => message.id === id ? {...message, status: "approved"} : message);
-
-	writeAllMessages(messages);
-}
-
-export function  rejectMessage(id: string): void {
-	const messages: TributeMessage[] = readAllMessages()
-		.map((message) => message.id === id ? {...message, status: "rejected"} : message);
-
-	writeAllMessages(messages);
+	if (error) throw error;
 }
