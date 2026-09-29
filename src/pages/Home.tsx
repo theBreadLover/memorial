@@ -35,28 +35,23 @@ export default function Home () {
 				>
 					2006 - 2025
 				</time>
-
-				{/*
-					Optional: a real quote from or about Edwin, in his own community's words.
-					Uncomment and fill in when you have one — nothing invented in the meantime.
-
-					<p className="font-serif italic text-base sm:text-lg mt-5 max-w-md mx-auto text-title-color">
-						"..."
-					</p>
-				*/}
 			</header>
 
 			{/* Introduction Section */}
 			<Section
 				title="Introduction"
-				text="He touched many lives with his kindness, strength, and warmth.
-          His story lives on in the hearts of those who knew him."
+				text="He touched many lives with his kindness, strength, and warmth. His story lives on in the hearts of those who knew him.
+          He was a dreamer who always worked hard to acomplished his many achievements."
 			/>
 
 			{/* Interaction Section */}
 			<Section
 				title={"Interactions"}
-				text={"Edwin was a easy-going guy that always managed to get along with everybody that He approached"}
+				text={"Edwin was a easy-going guy that always managed to get along with everybody that He approached. He always liked to take part in group" +
+					" outings and celebrations, as well as going to events whis his motorcycle.\nHe was open to new adventures with friends. He used to go" +
+					" ice-skating every weekend and work out at the gym the rest of the week.\nRiding his mototrycle to new places every night when he was" +
+					" not busy.\n Also discovering new places to eat and chill was also another hobby of his."}
+
 			/>
 
 			{/* Memories Section */}

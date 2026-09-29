@@ -12,7 +12,7 @@ export default function Section({title, text}: properties) {
 				<h2 className="section-title">{title}</h2>
 				{separatedText.map((paragraph: string, index: number)=> {
 					return (
-						<p key={index} className="leading-relaxed text-gray-700">{paragraph.trim()}</p>
+						<p key={index} className="leading-relaxed text-gray-700 py-1">{paragraph.trim()}</p>
 					)
 				})}
 			</section>
