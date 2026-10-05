@@ -1,7 +1,15 @@
+import { useEffect, useState } from "react";
 import images from "../utils/images.ts";
 import Section from "../components/Section.tsx";
+import { getSignedUrl } from "../utils/imageStore.ts";
 
 export default function Home () {
+	const [protraitUrl, setProtraitUrl] = useState<string | null>(null);
+
+	useEffect(() => {
+		getSignedUrl(images[1].path).then(setProtraitUrl);
+	}, [])
+
 	return (
 		<>
 			<header className="relative max-w-2xl mx-auto mb-10" role="banner">
@@ -14,11 +22,13 @@ export default function Home () {
 
 				<figure className="mt-6 sm:mt-8 flex flex-col items-center">
 					<div className="portrait-ring">
-						<img
-							src={images[1].src}
-							alt="Portrait of Edwin Hernandez"
-							className="w-full h-full rounded-full object-cover border-4 border-white"
-						/>
+						{protraitUrl && (
+							<img
+								src={protraitUrl}
+								alt="Portrait of Edwin Hernandez"
+								className="w-full h-full rounded-full object-cover border-4 border-white"
+							/>
+						)}
 					</div>
 					<figcaption className="sr-only">Edwin Hernandez</figcaption>
 				</figure>
@@ -71,8 +81,6 @@ export default function Home () {
 					<li>Going to ice-skate every weekend.</li>
 				</ul>
 			</section>
-
-			{/* Messages Section */}
 		</>
 	);
 };

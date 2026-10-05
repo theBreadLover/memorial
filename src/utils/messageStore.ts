@@ -7,6 +7,7 @@ export type TributeMessage = {
 	message: string;
 	createdAt: string;
 	status: "pending" | "approved" | "rejected";
+	imagePath: string | null;
 }
 
 function mapRow(row: any): TributeMessage {
@@ -17,6 +18,7 @@ function mapRow(row: any): TributeMessage {
 		message: row.message,
 		createdAt: row.created_at,
 		status: row.status,
+		imagePath: row.image_path ?? null,
 	}
 }
 
@@ -44,11 +46,11 @@ export async function getPendingMessages(): Promise<TributeMessage[]> {
 	return (data ?? []).map(mapRow);
 }
 
-export async function submitMessage(author: string, relation: string, text: string): Promise<void> {
+export async function submitMessage(author: string, relation: string, text: string, imagePath: string | null = null): Promise<void> {
 	const { error } = await supabase
 		.functions
 		.invoke("submit-message", {
-			body: { author, relation, text },
+			body: { author, relation, text, imagePath }
 		});
 
 	if (error) throw error;
@@ -67,6 +69,15 @@ export async function rejectMessage(id: string): Promise<void> {
 	const { error } = await supabase
 		.from("messages")
 		.update({status: "rejected"})
+		.eq("id", id);
+
+	if (error) throw error;
+}
+
+export async function updateMessageImagePath (id: string, imagePath: string): Promise<void> {
+	const { error } = await supabase
+		.from("messages")
+	 	.update({image_path: imagePath})
 		.eq("id", id);
 
 	if (error) throw error;
