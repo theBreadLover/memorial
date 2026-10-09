@@ -1,6 +1,6 @@
 # Memorial Website for Edwin Hernandez
 
-A memorial website built to honor and remember m friend Edwin. Friends and family can visit the page, look through photos, read his story, and 
+A memorial website built to honor and remember my friend Edwin. Friends and family can visit the page, look through photos, read his story, and 
 leave a message of tribute. Every message and photo is privately reviewed before it ever becomes public.
 
 ---
