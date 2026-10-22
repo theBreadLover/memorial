@@ -28,7 +28,7 @@ function compressImage(file: File): Promise<Blob> {
 			canvas.width = width;
 			canvas.height = height;
 
-			const context = canvas.getContext("2d");
+			const context: CanvasRenderingContext2D | null = canvas.getContext("2d");
 			if (!context) {
 				reject(new Error('No canvas context.'));
 				return;
