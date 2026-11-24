@@ -6,12 +6,13 @@ import { getSignedUrl } from "../utils/imageStore.ts";
 
 type GalleryItem = {
 	id: string;
-	src: string;
+	path: string;
 	caption: string;
 }
 
 function LazyPhoto({item}: {item: GalleryItem}) {
 	const [src, setSrc] = useState<string | null>(null);
+	const [hasError, setHasError] = useState(false);
 	const ref = useRef<HTMLLIElement>(null);
 
 	useEffect(() => {
@@ -21,7 +22,15 @@ function LazyPhoto({item}: {item: GalleryItem}) {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				if (entries[0].isIntersecting) {
-					getSignedUrl(item.src).then(setSrc);
+					getSignedUrl(item.path)
+						.then((url) => {
+							if (url) {
+								setSrc(url);
+							} else {
+								setHasError(true);
+							}
+						})
+						.catch(() => setHasError(true));
 					observer.disconnect();
 				}
 			},
@@ -31,15 +40,19 @@ function LazyPhoto({item}: {item: GalleryItem}) {
 		observer.observe(element);
 
 		return () => observer.disconnect();
-	}, [item.src])
+	}, [item.path])
 
 	return (
 		<li ref={ref}>
-			{
-				src
-					? (<PhotoCard imgSrc={src} caption={item.caption} />)
-					: (<div className="gallery-figure h-48 sm:h-64 w-full bg-sky-500/50 animate-pulse"/>)
-			}
+			{src ? (
+				<PhotoCard imgSrc={src} caption={item.caption} />
+			) : hasError ? (
+				<div className="gallery-figure h-48 sm:h-64 w-full bg-background-color border border-linen-border flex items-center justify-center text-xs text-charcoal-faint p-2 text-center rounded-xl">
+					Unable to load image
+				</div>
+			) : (
+				<div className="gallery-figure h-48 sm:h-64 w-full bg-sage-light animate-pulse rounded-xl" />
+			)}
 		</li>
 	)
 }
@@ -49,27 +62,29 @@ export default function Gallery() {
 
 	useEffect(() => {
 		async function load(){
-			const curated = await Promise.all(
-				images.map(async (image) => {
-					const src = await getSignedUrl(image.path);
-					return src ? {id: image.id, src, caption: image.quote} : null;
-				})
-			);
+			const curated: GalleryItem[] = images.map((image) => ({
+				id: image.id,
+				path: image.path,
+				caption: image.quote,
+			}));
 
-			const messages  = await getApprovedMessages();
-			const submitted = await Promise.all(
-				messages
-					.filter((message) => message.imagePath)
-					.map(async (message) => {
-						const src = await getSignedUrl(message.imagePath as string);
-						return src ? {id: message.id, src, caption: `Sent by ${message.author}`} : null;
-					})
-			)
+			try {
+				const messages = await getApprovedMessages();
+				const submitted: GalleryItem[] = messages
+					.filter((message) => Boolean(message.imagePath))
+					.map((message) => ({
+						id: message.id,
+						path: message.imagePath as string,
+						caption: `Sent by ${message.author}`,
+					}));
 
-			setPhotos([...curated, ...submitted].filter((photo): photo is GalleryItem => photo !== null));
+				setPhotos([...curated, ...submitted]);
+			} catch {
+				setPhotos(curated);
+			}
 		}
 
-		load().catch(() => setPhotos([]));
+		load();
 	}, []);
 
 	return (
