@@ -3,7 +3,7 @@ import {supabase} from "./supabaseClient.ts";
 const BUCKET = 'memorial-uploads';
 const SIGNED_URL_EXPIRY_SECONDS = 60 * 60; // 1 Hour -- regenerated on every page load
 const MAX_DIMENSIONS = 1600;
-const JPEG_QUALITY = 0.8;
+const WEBP_QUALITY = 0.8;
 
 function compressImage(file: File): Promise<Blob> {
 	return new Promise((resolve, reject) => {
@@ -13,6 +13,7 @@ function compressImage(file: File): Promise<Blob> {
 		image.onload = () => {
 			URL.revokeObjectURL(objectUrl);
 
+			// Resize image while preserving aspect ratio.
 			let { width, height } = image;
 			if (width > MAX_DIMENSIONS || height > MAX_DIMENSIONS) {
 				if (width >= height) {
@@ -24,6 +25,7 @@ function compressImage(file: File): Promise<Blob> {
 				}
 			}
 
+			// Redraw image with new dimensions onto a canva.
 			const canvas: HTMLCanvasElement = document.createElement("canvas");
 			canvas.width = width;
 			canvas.height = height;
@@ -33,12 +35,14 @@ function compressImage(file: File): Promise<Blob> {
 				reject(new Error('No canvas context.'));
 				return;
 			}
+
 			context.drawImage(image, 0, 0, width, height);
 
+			// Export image in WEBP format.
 			canvas.toBlob((blob) => (
 				blob ? resolve(blob) : reject(new Error('compression failed'))),
-				"image/jpeg",
-				JPEG_QUALITY
+				"image/webp",
+				WEBP_QUALITY
 			)
 		}
 
@@ -47,6 +51,7 @@ function compressImage(file: File): Promise<Blob> {
 			reject(new Error('Could not read image'));
 		};
 
+		// Return compressed image.
 		image.src = objectUrl;
 	})
 }
@@ -54,12 +59,12 @@ function compressImage(file: File): Promise<Blob> {
 export async function uploadImage (file: File): Promise<string> {
 	const compressed = await compressImage(file);
 
-	const path: string = `pending/${crypto.randomUUID()}.jpg`;
+	const path: string = `pending/${crypto.randomUUID()}.webp`;
 
 	const { error } = await supabase.storage
 		.from(BUCKET)
 		.upload(path, compressed, {
-			contentType: "image/jpeg",
+			contentType: "image/webp",
 		});
 
 	if (error) throw error;
