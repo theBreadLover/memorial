@@ -15,7 +15,7 @@ export default function Home () {
 			<header className="relative max-w-2xl mx-auto mb-10" role="banner">
 				<h1
 					id="memorial-title"
-					className="text-2xl sm:text-3xl font-semibold tracking-[0.25em] sm:tracking-[0.3em] uppercase text-accent-color md:text-center"
+					className="text-2xl sm:text-3xl font-semibold tracking-[0.25em] sm:tracking-[0.3em] uppercase text-accent-color text-center"
 				>
 					In Memory Of
 				</h1>
@@ -43,13 +43,13 @@ export default function Home () {
 				</figure>
 
 				<p
-					className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal mt-4 text-title-color md:text-center"
+					className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal mt-4 text-title-color text-center"
 					aria-label="Person's name"
 				>
 					Edwin Hernandez
 				</p>
 				<time
-					className="block mt-2 text-sm sm:text-base tracking-wide text-muted-color md:text-center"
+					className="block mt-2 text-sm sm:text-base tracking-wide text-muted-color text-center"
 					dateTime="2006 - 2025"
 				>
 					2006 - 2025
