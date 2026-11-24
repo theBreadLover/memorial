@@ -1,106 +1,135 @@
 @import "tailwindcss";
 
+@theme {
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    --color-linen: #FAF8F5;
+    --color-linen-subtle: #F5F1EA;
+    --color-linen-card: #FFFFFF;
+    --color-linen-border: #E8E2D8;
+
+    --color-sage-deep: #22382D;
+    --color-sage-mid: #335342;
+    --color-sage-muted: #4D6B5A;
+    --color-sage-light: #EBF2EE;
+
+    --color-terracotta: #B66542;
+    --color-terracotta-soft: #F9EFE9;
+
+    --color-charcoal: #23201E;
+    --color-charcoal-muted: #5C5752;
+    --color-charcoal-faint: #8E8882;
+
+    --color-accent-color: #335342;
+    --color-secondary-color: #B66542;
+    --color-title-color: #22382D;
+    --color-muted-color: #5C5752;
+    --color-background-color: #FAF8F5;
+}
+
 @layer base {
-    body {
-        @apply m-0 p-0 outline-none text-lg;
+    html {
+        scroll-behavior: smooth;
     }
-    img {
-        @apply w-34 h-35 rounded-lg;
+    body {
+        @apply m-0 p-1 bg-background-color text-charcoal font-sans;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
     }
 }
 
 @layer components {
-    .nav-link {
-        @apply mx-1 text-[#1b1b1b] rounded-lg bg-background-color/10 text-center;
+    .memorial-container {
+        @apply min-h-screen flex flex-col items-center px-4 sm:px-6 py-6 md:py-10;
+        background: radial-gradient(circle at 50% 0%, #FFFFFF 0%, #FAF8F5 50%, #F4EFE8 100%);
+    }
+
+    .memorial-nav {
+        @apply sticky top-4 z-40 max-w-4xl w-full mx-auto mb-8 px-4 py-2.5 rounded-full bg-white/80 backdrop-blur-md border border-linen-border shadow-xs flex items-center justify-between text-xs sm:text-sm;
+    }
+
+    .nav-pill-link {
+        @apply px-3 py-1.5 rounded-full text-charcoal-muted hover:text-sage-deep hover:bg-sage-light transition-all font-medium;
+    }
+
+    .editorial-hero {
+        @apply relative max-w-3xl w-full mx-auto text-center pt-8 pb-12 sm:pt-12 sm:pb-16 px-4;
     }
 
     .section-container {
-        @apply max-w-3xl w-full mx-auto bg-white/60 backdrop-blur-2xl rounded-xl p-5 sm:p-6 mb-6 sm:mb-8 shadow-md;
+        @apply max-w-3xl w-full mx-auto bg-white border border-linen-border rounded-2xl p-6 sm:p-9 mb-8 shadow-xs;
+    }
+
+    .section-eyebrow {
+        @apply text-xs uppercase tracking-[0.2em] font-semibold text-terracotta mb-1.5;
     }
 
     .section-title {
-        @apply text-xl font-semibold border-b border-accent-color pb-2 mb-4 text-title-color;
+        @apply font-serif text-2xl sm:text-3xl text-title-color font-normal pb-3 mb-6 border-b border-linen-border;
+    }
+
+    .story-card {
+        @apply bg-background-color border border-linen-border rounded-xl p-5 sm:p-6 mb-4 transition-all hover:border-accent-color/40;
+    }
+
+    .story-card-number {
+        @apply inline-flex items-center justify-center w-7 h-7 rounded-full bg-sage-light text-sage-deep text-xs font-serif font-bold mb-3;
     }
 
     .card-surface {
-        @apply bg-white/70 backdrop-blur border border-sky-100 shadow-sm rounded-2xl p-5 sm:p-6;
+        @apply bg-white border border-linen-border rounded-2xl p-6 sm:p-7 shadow-xs;
+    }
+
+    .tribute-card {
+        @apply bg-background-color border border-linen-border rounded-2xl p-5 sm:p-6 mb-5 relative transition hover:border-accent-color/30;
     }
 
     .eyebrow-label {
-        @apply text-xs uppercase tracking-wide text-accent-color mb-1;
-    }
-
-    .tribute-message {
-        @apply border-l-4 border-accent-color bg-white/70 backdrop-blur rounded-r-xl pl-4 pr-4 py-3 mb-4 shadow-md;
+        @apply inline-block text-[11px] uppercase tracking-wider font-semibold text-accent-color bg-sage-light px-2.5 py-0.5 rounded-md;
     }
 
     .form-field-input {
-        @apply w-full rounded-lg border border-sky-200 px-3 py-2.5 outline-none focus:ring-2 focus:ring-accent-color/40 resize-none;
+        /*@apply w-full rounded-xl border border-[#DCD5C9] bg-white px-3.5 py-2.5 text-sm text-charcoal placeholder-charcoal-faint outline-none focus:ring-2 focus:ring-sage-mid/30 focus:border-accent-color transition;*/
     }
 
     .btn-primary {
-        @apply rounded-full ml-auto bg-linear-to-r from-secondary-color to-accent-color text-white px-6 py-2.5 font-medium shadow hover:opacity-90 transition;
+        @apply inline-flex items-center justify-center rounded-full bg-sage-deep text-white px-6 py-2.5 text-sm font-medium hover:bg-sage-mid active:scale-[0.99] transition shadow-xs cursor-pointer;
     }
 
     .btn-secondary {
-        @apply rounded-full mr-auto bg-slate-200 text-slate-700 px-4 py-2 text-sm font-medium hover:bg-slate-300 transition;
+        @apply inline-flex items-center justify-center rounded-full bg-sage-light text-sage-deep px-5 py-2 text-xs font-semibold hover:bg-[#DDE9E2] transition cursor-pointer;
     }
 
-    .gallery-figure {
-        @apply rounded-xl overflow-hidden bg-linear-to-br from-sky-50 to-emerald-50 shadow-sm;
+    .btn-terracotta {
+        @apply inline-flex items-center justify-center rounded-full bg-secondary-color text-white px-5 py-2 text-xs font-semibold hover:bg-[#A35534] transition cursor-pointer;
     }
 
-    /* Hero frame, ported from the Nature & Sky mockup */
-
-    .memorial-frame {
-        @apply relative overflow-hidden rounded-2xl text-center mb-6 sm:mb-8;
-        background: linear-gradient(180deg, #eaf6f8 0%, #eef7f0 55%, #ffffff 100%);
-        padding: 40px 20px 32px;
+    .portrait-frame {
+        @apply relative mx-auto rounded-2xl p-2 bg-white border border-linen-border shadow-md transform -rotate-1 hover:rotate-0 transition duration-300;
+        width: 140px;
+        height: 180px;
     }
-
-    .frame-mountains {
-        @apply absolute inset-x-0 top-0 pointer-events-none;
-        height: 150px;
-        background:
-                linear-gradient(120deg, transparent 48%, rgba(90,140,150,0.16) 48.5%, transparent 51%),
-                linear-gradient(60deg, transparent 60%, rgba(120,170,140,0.18) 60.5%, transparent 64%),
-                linear-gradient(150deg, transparent 30%, rgba(90,140,150,0.10) 30.5%, transparent 34%);
+    @media (min-width: 640px) {
+        .portrait-frame {
+            width: 170px;
+            height: 220px;
+        }
     }
 
     .portrait-ring {
-        @apply relative mx-auto rounded-full p-1 shadow-lg;
-        width: 112px;
-        height: 112px;
-        background: linear-gradient(155deg, #bfe3e9, #7fb8c4 45%, #6fae8e);
+        @apply relative mx-auto rounded-full p-1 shadow-md bg-linear-to-tr from-sage-mid/30 via-sage-light to-terracotta/20;
+        width: 128px;
+        height: 128px;
     }
     @media (min-width: 640px) {
-        .memorial-frame {
-            padding: 64px 40px 48px;
-        }
-
-        .frame-mountains {
-            height: 200px;
-        }
-
         .portrait-ring {
-            width: 144px;
-            height: 144px;
+            width: 160px;
+            height: 160px;
         }
     }
-}
 
-@layer utilities {
-    .app-container {
-        @apply min-h-screen text-black flex flex-col items-center px-1;
-        background: linear-gradient(180deg, #eaf6f8 0%, #eef7f0 55%, #ffffff 100%);
+    .gallery-card {
+        @apply rounded-xl overflow-hidden bg-white border border-linen-border shadow-xs cursor-pointer transition hover:shadow-md hover:border-accent-color/40;
     }
-}
-
-@theme {
-    --color-line-color: #0000001A;
-    --color-background-color: #F9FAFB;
-    --color-accent-color: #3f7a6e;
-    --color-secondary-color: #6fae8e;
-    --color-title-color: #204a42;
-    --color-muted-color: #4d7d72;
 }

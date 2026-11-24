@@ -4,10 +4,10 @@ import Section from "../components/Section.tsx";
 import { getSignedUrl } from "../utils/imageStore.ts";
 
 export default function Home () {
-	const [protraitUrl, setProtraitUrl] = useState<string | null>(null);
+	const [portraitUrl, setPortraitUrl] = useState<string | null>(null);
 
 	useEffect(() => {
-		getSignedUrl(images[1].path).then(setProtraitUrl);
+		getSignedUrl(images[1].path).then(setPortraitUrl);
 	}, [])
 
 	return (
@@ -15,18 +15,27 @@ export default function Home () {
 			<header className="relative max-w-2xl mx-auto mb-10" role="banner">
 				<h1
 					id="memorial-title"
-					className="text-2xl sm:text-3xl font-semibold tracking-[0.25em] sm:tracking-[0.3em] uppercase text-accent-color"
+					className="text-2xl sm:text-3xl font-semibold tracking-[0.25em] sm:tracking-[0.3em] uppercase text-accent-color md:text-center"
 				>
 					In Memory Of
 				</h1>
 
 				<figure className="mt-6 sm:mt-8 flex flex-col items-center">
 					<div className="portrait-ring">
-						{protraitUrl && (
+						{portraitUrl ? (
 							<img
-								src={protraitUrl}
+								src={portraitUrl}
 								alt="Portrait of Edwin Hernandez"
-								className="w-full h-full rounded-full object-cover border-4 border-white"
+								width={160}
+								height={160}
+								fetchPriority="high"
+								decoding="async"
+								className="w-full h-full rounded-full object-cover border-4 border-white shadow-xs"
+							/>
+						) : (
+							<div
+								className="w-full h-full rounded-full bg-sage-light animate-pulse border-4 border-white"
+								aria-hidden="true"
 							/>
 						)}
 					</div>
@@ -34,13 +43,13 @@ export default function Home () {
 				</figure>
 
 				<p
-					className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal mt-4 text-title-color"
+					className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal mt-4 text-title-color md:text-center"
 					aria-label="Person's name"
 				>
 					Edwin Hernandez
 				</p>
 				<time
-					className="block mt-2 text-sm sm:text-base tracking-wide text-muted-color"
+					className="block mt-2 text-sm sm:text-base tracking-wide text-muted-color md:text-center"
 					dateTime="2006 - 2025"
 				>
 					2006 - 2025
