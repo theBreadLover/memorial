@@ -84,7 +84,7 @@ export default function Home () {
 				>
 					Favorite Memories
 				</h2>
-				<ul className="list-disc list-inside text-slate-600 space-y-2">
+				<ul className="list-disc pl-4 text-slate-600 space-y-2">
 					<li>Going to the gym together.</li>
 					<li>Edwin telling about his progress on his goal to get a new bike.</li>
 					<li>Going to ice-skate every weekend.</li>
