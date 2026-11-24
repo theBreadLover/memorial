@@ -58,8 +58,8 @@ export default function Home () {
 			<Section
 				title={"Interactions"}
 				text={"Edwin was a easy-going guy that always managed to get along with everybody that He approached. He always liked to take part in group" +
-					" outings and celebrations, as well as going to events whis his motorcycle.\nHe was open to new adventures with friends. He used to go" +
-					" ice-skating every weekend and work out at the gym the rest of the week.\nRiding his mototrycle to new places every night when he was" +
+					" outings and celebrations, as well as going to events with his motorcycle.\nHe was open to new adventures with friends. He used to go" +
+					" ice-skating every weekend and work out at the gym the rest of the week.\nRiding his motorcycle to new places every night when he was" +
 					" not busy.\n Also discovering new places to eat and chill was also another hobby of his."}
 
 			/>
