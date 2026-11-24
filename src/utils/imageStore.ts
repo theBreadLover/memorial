@@ -15,7 +15,7 @@ function compressImage(file: File): Promise<Blob> {
 
 			let { width, height } = image;
 			if (width > MAX_DIMENSIONS || height > MAX_DIMENSIONS) {
-				if (width >= length) {
+				if (width >= height) {
 					height = Math.round(height * MAX_DIMENSIONS / width);
 					width = MAX_DIMENSIONS;
 				} else {
